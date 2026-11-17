@@ -1,0 +1,138 @@
+.svg {
+  display: block;
+  overflow: visible;
+  image-rendering: pixelated;
+}
+
+.body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.gardener[data-pose='idle'] .body {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+.gardener[data-pose='water'] .body {
+  animation: tilt 2.2s ease-in-out infinite;
+}
+
+.gardener[data-pose='sleep'] .body {
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+.gardener[data-pose='dance'] .body {
+  animation: dance 0.5s ease-in-out infinite alternate;
+}
+
+.gardener[data-pose='wave'] .body {
+  animation: hop 500ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.waveArm {
+  transform-box: fill-box;
+  transform-origin: 0 100%;
+  animation: wave 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-0.5px);
+  }
+}
+
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40%,
+  70% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    transform: scaleY(0.94);
+  }
+}
+
+@keyframes dance {
+  from {
+    transform: translateY(0) rotate(-8deg);
+  }
+  to {
+    transform: translateY(-2px) rotate(8deg);
+  }
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes wave {
+  to {
+    transform: rotate(-25deg);
+  }
+}
+
+.drops rect {
+  animation: drip 1.1s linear infinite;
+}
+
+.drops rect:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.drops rect:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+@keyframes drip {
+  0% {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+}
+
+.zzz {
+  animation: float 2.4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 1px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(2px, -3px);
+  }
+}
+
+.notes rect {
+  animation: float 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .body,
+  .waveArm,
+  .drops rect,
+  .zzz,
+  .notes rect {
+    animation: none !important;
+  }
+}

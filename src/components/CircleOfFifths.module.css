@@ -1,0 +1,122 @@
+.root {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+}
+
+.root[data-theme='dark'] {
+  --c-fill: rgba(255, 255, 255, 0.045);
+  --c-fill-minor: rgba(255, 255, 255, 0.025);
+  --c-hover: rgba(255, 255, 255, 0.1);
+  --c-line: #0d0b0a;
+  --c-text: #e9e2d6;
+  --c-muted: #8f877c;
+  --c-sel: #d97757;
+  --c-sel-minor: rgba(217, 119, 87, 0.35);
+  --c-near: rgba(110, 160, 250, 0.32);
+  --c-centre: #161311;
+}
+
+:global(:root[data-theme='light']) .root,
+.root[data-theme='light'] {
+  --c-fill: #ffffff;
+  --c-fill-minor: #f6f1e9;
+  --c-hover: #fbe6dc;
+  --c-line: #e3d9cb;
+  --c-text: #2a231c;
+  --c-muted: #8a7c6c;
+  --c-sel: #d97757;
+  --c-sel-minor: #f7cdb9;
+  --c-near: #cfe0ff;
+  --c-centre: #fbf8f3;
+}
+
+.slice {
+  cursor: pointer;
+}
+
+.major,
+.minor {
+  stroke: var(--c-line);
+  stroke-width: 2;
+  transition: fill 160ms;
+}
+
+.major {
+  fill: var(--c-fill);
+}
+
+.minor {
+  fill: var(--c-fill-minor);
+}
+
+.slice:hover .major,
+.slice:hover .minor {
+  fill: var(--c-hover);
+}
+
+.slice[data-role='selected'] .major {
+  fill: var(--c-sel);
+}
+
+.slice[data-role='selected'] .minor {
+  fill: var(--c-sel-minor);
+}
+
+.slice[data-role='iv'] .major,
+.slice[data-role='v'] .major {
+  fill: var(--c-near);
+}
+
+.majorLabel,
+.minorLabel,
+.acc,
+.centreKey,
+.centreSub {
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+.majorLabel {
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--c-text);
+}
+
+.slice[data-role='selected'] .majorLabel {
+  fill: #fff;
+}
+
+.minorLabel {
+  font-size: 11.5px;
+  font-weight: 500;
+  fill: var(--c-muted);
+}
+
+.slice[data-role='selected'] .minorLabel {
+  fill: var(--c-text);
+}
+
+.acc {
+  font: 600 9.5px 'Inter', sans-serif;
+  fill: var(--c-muted);
+}
+
+.centre {
+  fill: var(--c-centre);
+}
+
+.centreKey {
+  font-size: 30px;
+  font-weight: 600;
+  fill: var(--c-text);
+}
+
+.centreSub {
+  font: 500 11px 'Inter', sans-serif;
+  fill: var(--c-muted);
+}

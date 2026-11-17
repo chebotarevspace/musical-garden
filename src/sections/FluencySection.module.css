@@ -1,0 +1,165 @@
+.title {
+  margin: 6px 0 0;
+  font: 600 clamp(28px, 4vh, 40px) / 1.1 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  text-align: center;
+}
+
+.description {
+  margin: 6px 0 14px;
+  max-width: 620px;
+  font: 400 14px/1.45 'Inter', system-ui, sans-serif;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.strip {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  max-width: min(1100px, 100%);
+  margin: 0;
+  padding: 6px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  list-style: none;
+  /* fade the tape out at both edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+/* Short exercises: centre the whole tape. */
+.strip > :first-child {
+  margin-left: auto;
+}
+.strip > :last-child {
+  margin-right: auto;
+}
+
+.step {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 7px 6px 8px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: rgba(var(--fg-rgb), 0.035);
+  box-shadow: inset 0 0 0 1px rgba(var(--fg-rgb), 0.06);
+  transition:
+    background 160ms,
+    box-shadow 160ms,
+    opacity 160ms,
+    transform 160ms;
+}
+
+.step[data-state='todo'] {
+  opacity: 0.55;
+}
+
+.step[data-state='current'] {
+  background: rgba(110, 160, 250, 0.16);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(140, 185, 255, 0.85),
+    0 0 18px rgba(110, 160, 250, 0.25);
+  transform: translateY(-2px);
+}
+
+.step[data-state='done'] {
+  background: rgba(71, 201, 138, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(71, 201, 138, 0.28);
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.strip[data-both] .note[data-hand='L'] {
+  padding-top: 4px;
+  border-top: 1px dashed rgba(var(--fg-rgb), 0.12);
+}
+
+.finger {
+  font: 700 10.5px/1 'Inter', system-ui, sans-serif;
+  color: var(--blue-ink);
+}
+
+.step[data-state='done'] .finger {
+  color: var(--good-ink);
+}
+
+.code {
+  font: 600 14px/1 'Space Grotesk', 'Inter', sans-serif;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step {
+    transition: none;
+  }
+}
+
+@media (max-height: 820px) {
+  .description {
+    display: none;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Timing feedback under each step (metronome mode). */
+.step[data-timing] {
+  position: relative;
+}
+.step[data-timing]::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+.step[data-timing='good']::after {
+  background: var(--good);
+}
+.step[data-timing='ok']::after {
+  background: #f2c14e;
+}
+.step[data-timing='off']::after {
+  background: var(--bad);
+}
+
+.advice {
+  font-weight: 400;
+  color: var(--good-text);
+}
+
+.count {
+  display: grid;
+  place-items: center;
+  height: 40px;
+  margin-top: 14px;
+  font: 600 34px/1 'Space Grotesk', sans-serif;
+  color: var(--accent);
+  animation: count-pop 200ms ease-out;
+}
+@keyframes count-pop {
+  from {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+}

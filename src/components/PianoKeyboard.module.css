@@ -1,0 +1,261 @@
+.keyboard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+
+.rows {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+  background: #0c0a09;
+}
+
+/* Several rows (phone held upright): each octave strip gets its own felt line. */
+.keyboard[data-rows]:not([data-rows='1']) .rows {
+  padding-bottom: 10px;
+}
+.keyboard[data-rows]:not([data-rows='1']) .keys + .keys {
+  box-shadow: 0 -10px 0 #0c0a09, 0 -13px 0 #4a1714;
+}
+
+/* Lacquered key slip with a strip of red felt — the mascot sits on it. */
+.lid {
+  position: relative;
+  flex: none;
+  height: 16px;
+  background: linear-gradient(180deg, #2a2420 0%, #16120f 55%, #0c0a09 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 220, 0.09),
+    0 -12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.lid::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(180deg, #7a2a24, #4a1714);
+}
+
+.keys {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #0c0a09;
+}
+
+.white,
+.black {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  transform-origin: 50% 0;
+  transition: transform 170ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.white {
+  bottom: 0;
+  z-index: 1;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(180deg, #e3dccf 0%, #f5f0e7 9%, #faf6ef 70%, #f1ebe1 92%, #e2dbcf 100%);
+  box-shadow:
+    inset -1px 0 0 rgba(35, 25, 15, 0.32),
+    inset 1px 0 0 rgba(255, 255, 255, 0.7),
+    inset 0 -6px 0 rgba(60, 45, 30, 0.07),
+    inset 0 8px 10px -8px rgba(0, 0, 0, 0.55);
+}
+
+.black {
+  height: 63%;
+  z-index: 3;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(180deg, #060607 0%, #18181b 70%, #26262b 90%, #1a1a1d 100%);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.07),
+    inset -1px 0 0 rgba(0, 0, 0, 0.7),
+    inset 0 -5px 0 rgba(255, 255, 255, 0.045),
+    0 4px 6px rgba(0, 0, 0, 0.55),
+    1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Highlight layers: only opacity animates. */
+.fx {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease-out;
+}
+
+.white .fxCorrect {
+  background: linear-gradient(180deg, #4fcf90 0%, #34b676 70%, #26995f 100%);
+  box-shadow: 0 0 24px 3px rgba(64, 201, 132, 0.55), inset 0 -6px 0 rgba(0, 0, 0, 0.12);
+}
+.black .fxCorrect {
+  background: linear-gradient(180deg, #1f7a4e 0%, #2ea56b 75%, #3bbf7e 100%);
+  box-shadow: 0 0 20px 3px rgba(64, 201, 132, 0.6);
+}
+.white .fxWrong {
+  background: linear-gradient(180deg, #f07a6f 0%, #e1574c 70%, #c4433a 100%);
+  box-shadow: 0 0 24px 3px rgba(229, 87, 76, 0.55), inset 0 -6px 0 rgba(0, 0, 0, 0.12);
+}
+.black .fxWrong {
+  background: linear-gradient(180deg, #8f2a24 0%, #c8443b 75%, #e0574c 100%);
+  box-shadow: 0 0 20px 3px rgba(229, 87, 76, 0.6);
+}
+.white .fxHint {
+  background: linear-gradient(180deg, #a9c9ff 0%, #79a8f5 75%, #5b8fe6 100%);
+  box-shadow: 0 0 24px 3px rgba(110, 160, 250, 0.5);
+}
+.black .fxHint {
+  background: linear-gradient(180deg, #2a4f8f 0%, #4d82dc 80%, #6b9cf0 100%);
+  box-shadow: 0 0 20px 3px rgba(110, 160, 250, 0.55);
+}
+
+.white[data-state='correct'] .fxCorrect,
+.black[data-state='correct'] .fxCorrect,
+.white[data-state='wrong'] .fxWrong,
+.black[data-state='wrong'] .fxWrong,
+.white[data-state='hint'] .fxHint,
+.black[data-state='hint'] .fxHint {
+  opacity: 1;
+  transition-duration: 90ms;
+}
+
+/* Pressed: key sinks a little (transform only). */
+.white[data-state='correct'],
+.white[data-state='wrong'] {
+  z-index: 2;
+  transform: translateY(2px) scaleY(0.99);
+  transition-duration: 90ms;
+}
+.black[data-state='correct'],
+.black[data-state='wrong'] {
+  z-index: 4;
+  transform: translateY(2px) scaleY(0.975);
+  transition-duration: 90ms;
+}
+.white[data-state='hint'] {
+  z-index: 2;
+}
+.black[data-state='hint'] {
+  z-index: 4;
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  font: 500 clamp(7px, 0.62vw, 11px) / 1 'Inter', system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: rgba(70, 55, 40, 0.42);
+  pointer-events: none;
+  transition: color 120ms;
+}
+
+.white[data-state='correct'] .label,
+.white[data-state='wrong'] .label,
+.white[data-state='hint'] .label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .white,
+  .black {
+    transition: none;
+  }
+  .white[data-state='correct'],
+  .white[data-state='wrong'],
+  .black[data-state='correct'],
+  .black[data-state='wrong'] {
+    transform: none;
+  }
+}
+
+/* ---- "play this next" and demonstration marks ---- */
+.white .fxNext {
+  background: linear-gradient(180deg, rgba(121, 168, 245, 0.08), rgba(121, 168, 245, 0.32));
+  box-shadow: inset 0 0 0 2px rgba(110, 160, 250, 0.85), 0 0 16px rgba(110, 160, 250, 0.35);
+}
+.black .fxNext {
+  background: linear-gradient(180deg, rgba(60, 100, 180, 0.4), rgba(90, 140, 230, 0.75));
+  box-shadow: inset 0 0 0 2px rgba(140, 185, 255, 0.9), 0 0 14px rgba(110, 160, 250, 0.45);
+}
+.white[data-state='next'] .fxNext,
+.black[data-state='next'] .fxNext,
+.white[data-state='demo'] .fxHint,
+.black[data-state='demo'] .fxHint {
+  opacity: 1;
+  transition-duration: 90ms;
+}
+.white[data-state='demo'] {
+  z-index: 2;
+  transform: translateY(2px) scaleY(0.99);
+  transition-duration: 90ms;
+}
+.black[data-state='demo'] {
+  z-index: 4;
+  transform: translateY(2px) scaleY(0.975);
+  transition-duration: 90ms;
+}
+.white[data-state='next'] {
+  z-index: 2;
+}
+.black[data-state='next'] {
+  z-index: 4;
+}
+
+/* Finger number / chord degree badge. */
+.mark {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #1d2a44;
+  box-shadow: 0 0 0 2px rgba(140, 185, 255, 0.85), 0 2px 6px rgba(0, 0, 0, 0.35);
+  font: 700 11.5px/1 'Inter', system-ui, sans-serif;
+  color: #e7efff;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.black .mark {
+  bottom: 10px;
+  min-width: 18px;
+  height: 18px;
+  font-size: 10.5px;
+}
+.white[data-state='correct'] .mark,
+.black[data-state='correct'] .mark {
+  background: #155a39;
+  box-shadow: 0 0 0 2px rgba(120, 230, 170, 0.9);
+}
+.white[data-state='wrong'] .mark,
+.black[data-state='wrong'] .mark {
+  background: #6b1f1a;
+  box-shadow: 0 0 0 2px rgba(255, 150, 140, 0.9);
+}
+.white[data-state='next'] .label,
+.white[data-state='demo'] .label {
+  color: rgba(30, 50, 90, 0.7);
+}

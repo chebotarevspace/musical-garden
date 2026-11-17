@@ -1,0 +1,119 @@
+.root {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.root[data-theme='dark'] {
+  --sl-line: rgba(239, 232, 220, 0.5);
+  --sl-ink: #efe8dc;
+  --sl-muted: #8f877c;
+  --sl-cursor: rgba(110, 160, 250, 0.16);
+  --sl-cursor-line: rgba(140, 185, 255, 0.75);
+}
+
+:global(:root[data-theme='light']) .root,
+.root[data-theme='light'] {
+  --sl-line: #6d6156;
+  --sl-ink: #231d17;
+  --sl-muted: #7a6d60;
+  --sl-cursor: rgba(80, 130, 230, 0.12);
+  --sl-cursor-line: rgba(80, 130, 230, 0.6);
+}
+
+.line,
+.ledger {
+  stroke: var(--sl-line);
+  stroke-width: 1.15;
+}
+
+.ledger {
+  stroke-width: 1.4;
+}
+
+.clef {
+  font-family: 'Noto Music', 'Bravura', 'Apple Symbols', serif;
+  fill: var(--sl-ink);
+  opacity: 0.85;
+  user-select: none;
+}
+
+.head,
+.acc {
+  fill: var(--sl-ink);
+  color: var(--sl-ink);
+  transition: fill 120ms, color 120ms;
+}
+
+.note[data-state='done'] .head,
+.note[data-state='done'] .acc {
+  fill: var(--good, #47c98a);
+  color: var(--good, #47c98a);
+}
+
+.note[data-state='wrong'] .head,
+.note[data-state='wrong'] .acc {
+  fill: var(--bad, #e5574c);
+  color: var(--bad, #e5574c);
+}
+
+.cursor {
+  fill: var(--sl-cursor);
+  stroke: var(--sl-cursor-line);
+  stroke-width: 1.5;
+}
+
+.label {
+  fill: var(--sl-muted);
+  font: 600 12.5px 'Space Grotesk', 'Inter', sans-serif;
+  text-anchor: middle;
+}
+
+.note[data-state='done'] .label {
+  fill: var(--good, #47c98a);
+}
+
+.stem,
+.bar {
+  stroke: var(--sl-ink);
+  stroke-width: 1.4;
+}
+
+.bar {
+  stroke: var(--sl-ink);
+  stroke-width: 1.6;
+  opacity: 0.55;
+}
+
+.flag {
+  fill: none;
+  stroke: var(--sl-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.note[data-state='done'] .stem,
+.note[data-state='done'] .flag {
+  stroke: var(--good, #47c98a);
+}
+
+.note[data-state='wrong'] .stem,
+.note[data-state='wrong'] .flag {
+  stroke: var(--bad, #e5574c);
+}
+
+.rest {
+  font: 400 30px/1 'Noto Music', 'Bravura', 'Apple Symbols', serif;
+  fill: var(--sl-ink);
+  opacity: 0.85;
+}
+
+.note[data-state='done'] .rest {
+  fill: var(--good, #47c98a);
+}
+
+.above {
+  font: 700 17px/1 'Space Grotesk', 'Inter', sans-serif;
+  fill: var(--accent-ink, #b9762a);
+}

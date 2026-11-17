@@ -1,0 +1,71 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--text-strong);
+}
+
+.pager button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.08);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.pager button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.card {
+  width: min(380px, 100%);
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, calc(0.4 * var(--shadow-k)));
+  image-rendering: pixelated;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.primary,
+.secondary {
+  height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--good);
+  color: var(--good-on);
+}
+
+.secondary {
+  background: rgba(var(--fg-rgb), 0.08);
+  color: var(--text);
+}
+
+.msg {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}

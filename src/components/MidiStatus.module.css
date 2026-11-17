@@ -1,0 +1,143 @@
+.wrap {
+  position: relative;
+}
+
+.root {
+  display: inline-flex;
+  border: 0;
+  cursor: pointer;
+  align-items: center;
+  gap: 9px;
+  height: 34px;
+  max-width: 300px;
+  padding: 0 14px 0 12px;
+  border-radius: 999px;
+  background: rgba(var(--fg-rgb), 0.04);
+  box-shadow: inset 0 0 0 1px rgba(var(--fg-rgb), 0.07);
+  font: 500 13px/1 'Inter', system-ui, sans-serif;
+  color: var(--text);
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b645c;
+}
+
+.root[data-tone='on'] .dot {
+  background: var(--good);
+  box-shadow: 0 0 0 3px rgba(64, 201, 132, 0.18), 0 0 10px rgba(64, 201, 132, 0.7);
+}
+
+.root[data-tone='off'] .dot {
+  background: var(--bad);
+  box-shadow: 0 0 0 3px rgba(229, 87, 76, 0.15);
+}
+
+.root[data-tone='idle'] .dot {
+  background: #a39a8e;
+}
+
+.text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.root:not([data-tone='on']) .text {
+  color: var(--text-muted);
+}
+
+.select {
+  max-width: 230px;
+  margin-right: -6px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--focus);
+}
+
+.select option {
+  background: var(--panel);
+}
+
+/* Small screens: just the status dot (the banner explains the rest). */
+@media (max-width: 1280px), (max-height: 500px) and (orientation: landscape) {
+  .root:not([data-tone='on']) {
+    width: 34px;
+    padding: 0;
+    justify-content: center;
+  }
+  .root:not([data-tone='on']) .text {
+    display: none;
+  }
+  .root[data-tone='on'] {
+    max-width: 180px;
+  }
+}
+
+button.root:hover {
+  background: rgba(var(--fg-rgb), 0.08);
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 50;
+  width: 320px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(var(--panel-rgb), 0.98);
+  box-shadow:
+    0 0 0 1px rgba(var(--fg-rgb), 0.08),
+    0 24px 60px rgba(0, 0, 0, calc(0.6 * var(--shadow-k)));
+  font: 400 13px/1.45 'Inter', system-ui, sans-serif;
+  color: var(--text);
+}
+
+.panel b {
+  font-size: 14px;
+  color: var(--text-strong);
+}
+
+.panel p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+}
+
+.panel .alt {
+  margin-top: 10px;
+  color: var(--text);
+}
+
+.panel ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+}
+
+.mic {
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(var(--fg-rgb), 0.07);
+  font: 600 13px/1.2 'Inter', sans-serif;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.mic:hover {
+  background: rgba(var(--fg-rgb), 0.12);
+}

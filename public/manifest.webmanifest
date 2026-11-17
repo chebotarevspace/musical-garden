@@ -1,0 +1,26 @@
+{
+  "name": "Музыкальный сад — пианино с нуля",
+  "short_name": "Музыкальный сад",
+  "description": "Уроки, тренажёры и песни для пианино и MIDI-клавиатуры. Каждые 10 минут игры выращивают растение в саду.",
+  "lang": "ru",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#f3eee5",
+  "theme_color": "#f3eee5",
+  "categories": ["education", "music"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Сад и занятие", "url": "/?go=home", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Тренажёры", "url": "/?go=trainers", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Песни", "url": "/?go=songs", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

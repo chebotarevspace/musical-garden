@@ -1,0 +1,198 @@
+.title {
+  margin: 6px 0 0;
+  font: 600 clamp(26px, 3.6vh, 36px) / 1.1 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  text-align: center;
+}
+
+.description {
+  margin: 6px 0 18px;
+  font: 400 14px/1.45 'Inter', system-ui, sans-serif;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.switches,
+.buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 96px;
+  padding: 12px 14px 14px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(var(--fg-rgb), 0.035);
+  box-shadow: inset 0 0 0 1px rgba(var(--fg-rgb), 0.07);
+  transition: background 160ms, box-shadow 160ms, transform 160ms, opacity 160ms;
+}
+
+.cards[data-many] .card {
+  min-width: 78px;
+  padding: 10px 10px 12px;
+}
+
+.card[data-state='todo'] {
+  opacity: 0.6;
+}
+
+.card[data-state='current'] {
+  background: rgba(110, 160, 250, 0.16);
+  box-shadow: inset 0 0 0 1.5px rgba(140, 185, 255, 0.85), 0 0 24px rgba(110, 160, 250, 0.25);
+  transform: translateY(-3px);
+}
+
+.card[data-state='hit'] {
+  background: rgba(71, 201, 138, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(71, 201, 138, 0.4);
+}
+
+.card[data-state='miss'] {
+  background: rgba(229, 87, 76, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(229, 87, 76, 0.4);
+}
+
+.numeral {
+  font: 700 11px/1 'Inter', system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--blue-ink);
+}
+
+.symbol {
+  font: 600 30px/1 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--text-strong);
+}
+
+.cards[data-many] .symbol {
+  font-size: 24px;
+}
+
+.mark {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font: 700 12px/1 'Inter', sans-serif;
+}
+.card[data-state='hit'] .mark {
+  color: var(--good);
+}
+.card[data-state='miss'] .mark {
+  color: var(--bad);
+}
+
+/* time left in the bar */
+.bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(var(--fg-rgb), 0.08);
+}
+.bar span {
+  position: absolute;
+  inset: 0;
+  background: #8fb6ff;
+  transform-origin: left;
+  transition: transform 120ms linear;
+}
+
+.beats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.12);
+  transition: background 80ms, transform 80ms;
+}
+.dot[data-strong] {
+  width: 14px;
+  height: 14px;
+}
+.dot[data-on] {
+  background: #8fb6ff;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(110, 160, 250, 0.6);
+}
+.dot[data-on][data-strong] {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(217, 119, 87, 0.7);
+}
+
+.countIn {
+  font: 600 34px/1 'Space Grotesk', sans-serif;
+  color: var(--accent);
+  animation: pop 200ms ease-out;
+}
+@keyframes pop {
+  from {
+    transform: scale(1.4);
+    opacity: 0.4;
+  }
+}
+
+.summary {
+  color: var(--good-text);
+  font-weight: 500;
+}
+
+/* Long forms (12-bar blues): even rows instead of a lonely last card. */
+.cards[data-many] {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(78px, 1fr));
+}
+
+.circleBtn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(var(--fg-rgb), 0.05);
+  box-shadow: inset 0 0 0 1px rgba(var(--fg-rgb), 0.08);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 150ms;
+}
+.circleBtn:hover {
+  background: rgba(var(--fg-rgb), 0.1);
+}
+.circleModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.circleModal p {
+  margin: 0;
+  font: 400 13.5px/1.45 'Inter', system-ui, sans-serif;
+  color: var(--text-muted);
+  text-align: center;
+}

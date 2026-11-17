@@ -1,0 +1,28 @@
+.card {
+  position: relative;
+  width: min(980px, 100%);
+}
+
+.card svg {
+  max-height: 40vh;
+}
+
+.hand {
+  position: absolute;
+  left: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font: 700 10px/1.3 'Inter', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(var(--fg-rgb), 0.06);
+}
+
+.hand[data-hand='R'] {
+  top: 6px;
+}
+
+.hand[data-hand='L'] {
+  bottom: 6px;
+}

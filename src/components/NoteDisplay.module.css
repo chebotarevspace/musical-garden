@@ -1,0 +1,98 @@
+.shaker {
+  will-change: transform;
+}
+
+.code {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(96px, 23vh, 248px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: var(--text-strong);
+  text-shadow: 0 18px 60px rgba(0, 0, 0, calc(0.55 * var(--shadow-k)));
+  animation: enter 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.code {
+  transition: color 90ms ease-out;
+}
+
+.solved,
+.solved .sharp,
+.solved .flat,
+.solved .octave {
+  color: var(--good);
+}
+
+.letter {
+  display: inline-block;
+}
+
+/* Accidentals: slightly smaller, fixed vertical placement relative to the cap height. */
+.sharp,
+.flat {
+  display: inline-block;
+  width: auto;
+  flex: none;
+  color: var(--text-strong);
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, calc(0.45 * var(--shadow-k))));
+}
+
+.sharp {
+  height: 0.6em;
+  margin: 0 0.035em 0 0.06em;
+  transform: translateY(-0.06em);
+}
+
+.flat {
+  height: 0.72em;
+  margin: 0 0.03em 0 0.07em;
+  transform: translateY(-0.005em);
+}
+
+.octave {
+  display: inline-block;
+  margin-left: 0.04em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  color: var(--text-octave);
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code {
+    animation-name: fade;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .code {
+    font-size: clamp(60px, min(25vw, 12vh), 150px);
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .code {
+    font-size: clamp(52px, 21vh, 110px);
+  }
+}

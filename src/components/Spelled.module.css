@@ -1,0 +1,23 @@
+/* Plain inline flow (not flex) so spaces between notes like "E G♯ B" are kept. */
+.root {
+  display: inline;
+  white-space: nowrap;
+}
+
+.sharp,
+.flat {
+  display: inline-block;
+  width: auto;
+  vertical-align: baseline;
+}
+
+.sharp {
+  height: 0.62em;
+  margin: 0 0.04em 0 0.05em;
+  transform: translateY(-0.06em);
+}
+
+.flat {
+  height: 0.74em;
+  margin: 0 0.03em 0 0.05em;
+}

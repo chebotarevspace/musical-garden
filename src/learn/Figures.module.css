@@ -1,0 +1,592 @@
+/* Figures for the light "paper" lesson pages. Colours come from variables set on the lesson root. */
+
+.figure {
+  position: relative;
+  margin: 28px 0;
+  padding: 22px 22px 16px;
+  border-radius: 18px;
+  background: var(--l-card);
+  box-shadow:
+    0 0 0 1px var(--l-border),
+    0 10px 30px -18px rgba(60, 40, 20, 0.25);
+}
+
+.figure[data-wide] {
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.figureBar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+}
+
+.figureBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.caption {
+  margin-top: 14px;
+  font: 400 14px/1.5 'Inter', system-ui, sans-serif;
+  color: var(--l-muted);
+  text-align: center;
+}
+
+.play {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 14px 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--l-accent-soft);
+  font: 600 13px/1 'Inter', system-ui, sans-serif;
+  color: var(--l-accent-ink);
+  cursor: pointer;
+  transition: background 150ms, transform 150ms;
+}
+.play:hover {
+  background: var(--l-accent-soft-hover);
+}
+.play:active {
+  transform: scale(0.97);
+}
+.play[data-playing] {
+  background: var(--l-accent);
+  color: #fff;
+}
+
+/* ---- keyboard ---- */
+.keys {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  touch-action: none;
+  user-select: none;
+}
+
+.key {
+  cursor: pointer;
+}
+.key rect {
+  fill: #fffdfa;
+  stroke: #cdbfae;
+  stroke-width: 1;
+  transition: fill 90ms;
+}
+.key[data-black] rect {
+  fill: #2c2621;
+  stroke: #1c1814;
+}
+.key:hover rect {
+  fill: #f6efe5;
+}
+.key[data-black]:hover rect {
+  fill: #3b332c;
+}
+
+.key[data-tone='accent'] rect { fill: #f7c9b5; stroke: #d98a6b; }
+.key[data-tone='blue'] rect { fill: #cfe0ff; stroke: #87a9e6; }
+.key[data-tone='green'] rect { fill: #c7ecd7; stroke: #74c498; }
+.key[data-tone='gold'] rect { fill: #f8e2a6; stroke: #d9b354; }
+.key[data-tone='muted'] rect { fill: #ece6dd; }
+.key[data-black][data-tone='accent'] rect { fill: #d4693f; stroke: #a94b28; }
+.key[data-black][data-tone='blue'] rect { fill: #4d79c9; stroke: #355a9e; }
+.key[data-black][data-tone='green'] rect { fill: #3a9b67; stroke: #2a7a50; }
+.key[data-black][data-tone='gold'] rect { fill: #c99a2e; stroke: #9c7620; }
+
+.key[data-down] rect {
+  fill: #ffe0d1 !important;
+}
+.key[data-black][data-down] rect {
+  fill: #e07c55 !important;
+}
+
+.badge circle {
+  fill: var(--l-ink);
+}
+.key[data-tone='blue'] .badge circle { fill: #2f5fb3; }
+.key[data-tone='green'] .badge circle { fill: #237a4c; }
+.key[data-tone='accent'] .badge circle { fill: #b9532f; }
+.key[data-tone='gold'] .badge circle { fill: #8a6516; }
+.badge text {
+  fill: #fff;
+  font: 700 11px/1 'Inter', system-ui, sans-serif;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.keyName {
+  fill: #8b7d6c;
+  font: 600 10.5px/1 'Inter', system-ui, sans-serif;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.keyNameRu {
+  fill: var(--l-muted);
+  font: 500 10.5px/1 'Inter', system-ui, sans-serif;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ---- staff ---- */
+.staff {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.line {
+  stroke: #6d6156;
+  stroke-width: 1;
+}
+.lineHi {
+  stroke: var(--l-accent);
+  stroke-width: 2;
+}
+.spaceHi {
+  fill: rgba(80, 130, 230, 0.13);
+}
+.ledger {
+  stroke: #4a3f36;
+  stroke-width: 1.3;
+}
+.clef {
+  font-family: 'Noto Music', 'Bravura', 'Apple Symbols', serif;
+  fill: #2d2620;
+  user-select: none;
+}
+.head,
+.acc {
+  fill: var(--l-ink);
+  color: var(--l-ink);
+}
+.staffItem {
+  cursor: pointer;
+}
+.staffItem[data-tone='accent'] .head,
+.staffItem[data-tone='accent'] .acc { fill: #c25a34; color: #c25a34; }
+.staffItem[data-tone='blue'] .head,
+.staffItem[data-tone='blue'] .acc { fill: #2f62c0; color: #2f62c0; }
+.staffItem[data-tone='green'] .head,
+.staffItem[data-tone='green'] .acc { fill: #23824f; color: #23824f; }
+.staffItem[data-active] .head,
+.staffItem[data-active] .acc {
+  fill: var(--l-accent);
+  color: var(--l-accent);
+}
+.hit {
+  fill: transparent;
+}
+.staffItem:hover .hit {
+  fill: rgba(217, 119, 87, 0.07);
+}
+.staffLabel {
+  fill: var(--l-muted);
+  font: 600 11.5px/1 'Inter', system-ui, sans-serif;
+  text-anchor: middle;
+}
+
+/* ---- durations ---- */
+.durations {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+}
+.durHead,
+.durRow {
+  display: grid;
+  grid-template-columns: 30px 130px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.durHead {
+  grid-template-columns: 30px 130px repeat(4, 1fr);
+  font: 600 11px/1 'Inter', sans-serif;
+  color: var(--l-muted);
+  text-align: center;
+}
+.durBeat {
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--l-border);
+}
+.glyph {
+  color: var(--l-ink);
+}
+.durName {
+  display: flex;
+  flex-direction: column;
+  font: 600 14px/1.2 'Inter', sans-serif;
+  color: var(--l-ink);
+}
+.durName small {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--l-muted);
+}
+.durTrack {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+}
+.durBar {
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0a383, #e07c55);
+}
+.durRow:nth-child(3) .durBar { background: linear-gradient(90deg, #f4c66b, #dfa63a); }
+.durRow:nth-child(4) .durBar { background: linear-gradient(90deg, #8fb6f4, #5b8ee0); }
+.durRow:nth-child(5) .durBar { background: linear-gradient(90deg, #86d4a8, #43ad74); }
+
+/* ---- scale steps ---- */
+.stepsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.stepChip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #e5edfc;
+  font: 600 12px/1 'Inter', sans-serif;
+  color: #2f5fb3;
+}
+.stepChip[data-semi] {
+  background: #fde3d6;
+  color: #b04f2c;
+}
+
+/* ---- chord row ---- */
+.chordRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 26px;
+}
+.chordCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 150px;
+  padding: 12px 10px 10px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--l-paper);
+  box-shadow: 0 0 0 1px var(--l-border);
+  cursor: pointer;
+  transition: box-shadow 160ms, transform 160ms, background 160ms;
+}
+.chordCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--l-border), 0 10px 20px -12px rgba(60, 40, 20, 0.35);
+}
+.chordCard[data-active] {
+  background: #fff3ec;
+  box-shadow: 0 0 0 2px var(--l-accent), 0 10px 24px -12px rgba(217, 119, 87, 0.6);
+  transform: translateY(-3px);
+}
+.numeral {
+  font: 700 12px/1 'Inter', sans-serif;
+  letter-spacing: 0.06em;
+  color: var(--l-blue-ink);
+}
+.chordSym {
+  font: 600 26px/1 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--l-ink);
+}
+
+/* ---- callouts ---- */
+.callout {
+  display: flex;
+  gap: 14px;
+  margin: 24px 0;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #f2f6ff;
+  box-shadow: inset 3px 0 0 #6b95e3;
+}
+.callout[data-kind='remember'] {
+  background: #fff6e2;
+  box-shadow: inset 3px 0 0 #e3b34b;
+}
+.callout[data-kind='try'] {
+  background: #ecf8f1;
+  box-shadow: inset 3px 0 0 #4fb07c;
+}
+.callout[data-kind='warn'] {
+  background: #fdf0ea;
+  box-shadow: inset 3px 0 0 #e08060;
+}
+.calloutIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  font: 700 14px/1 'Inter', sans-serif;
+  color: var(--l-ink);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.calloutTitle {
+  margin-bottom: 4px;
+  font: 700 13px/1.3 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--l-ink);
+}
+.calloutBody {
+  font: 400 15.5px/1.6 'Inter', sans-serif;
+  color: var(--l-text);
+}
+.calloutBody p {
+  margin: 0 0 8px;
+}
+.calloutBody p:last-child {
+  margin: 0;
+}
+
+/* ---- practice card ---- */
+.practice {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0;
+  padding: 16px 16px 16px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2a2420, #1a1613);
+  color: #f3ece2;
+  box-shadow: 0 14px 30px -16px rgba(30, 20, 10, 0.6);
+}
+.practiceIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(217, 119, 87, 0.18);
+  color: #f0a589;
+}
+.practiceText {
+  flex: 1;
+  min-width: 0;
+}
+.practiceEyebrow {
+  font: 600 10.5px/1 'Inter', sans-serif;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #b4a796;
+}
+.practiceTitle {
+  margin-top: 5px;
+  font: 600 16px/1.3 'Inter', sans-serif;
+  color: #fff;
+}
+.practiceBody {
+  margin-top: 4px;
+  font: 400 14px/1.5 'Inter', sans-serif;
+  color: #cfc5b8;
+}
+.practiceBtn {
+  flex: none;
+  height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e3876a, #c9684b);
+  font: 600 14px/1 'Inter', sans-serif;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 14px rgba(217, 119, 87, 0.35);
+  transition: transform 150ms;
+}
+.practiceBtn:hover {
+  transform: translateX(2px);
+}
+
+.inlineNote {
+  font-weight: 600;
+  color: var(--l-ink);
+}
+
+.kbd {
+  display: inline-block;
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15), 0 0 0 1px var(--l-border);
+  font: 600 12px/1.4 'Inter', sans-serif;
+  color: var(--l-ink);
+  text-align: center;
+}
+
+/* ---- timeline ---- */
+.timeline {
+  margin: 24px 0;
+}
+.timelineBar {
+  display: flex;
+  gap: 4px;
+  height: 34px;
+}
+.timelineBar span {
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font: 600 12px/1 'Inter', sans-serif;
+  color: #fff;
+}
+[data-i='0'] { --c: #e07c55; }
+[data-i='1'] { --c: #dfa63a; }
+[data-i='2'] { --c: #5b8ee0; }
+[data-i='3'] { --c: #43ad74; }
+.timelineBar span {
+  background: var(--c);
+}
+.timelineList {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.timelineList li {
+  position: relative;
+  padding-left: 20px;
+  font: 400 15.5px/1.55 'Inter', sans-serif;
+  color: var(--l-text);
+}
+.timelineList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--c);
+}
+.timelineTotal {
+  margin-top: 10px;
+  font: 600 13px/1 'Inter', sans-serif;
+  color: var(--l-muted);
+}
+
+/* Room for the play button so it never covers the drawing. */
+.figure:has(> .figureBar) {
+  padding-top: 54px;
+}
+.figure:has(> .figureBar) .chordRow {
+  padding-top: 0;
+}
+
+/* ---- accompaniment pattern grid ---- */
+.patternGrid {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  max-width: 640px;
+}
+.patternBeat {
+  font: 600 11px/1 'Inter', sans-serif;
+  color: #b3a594;
+  text-align: center;
+}
+.patternBeat[data-beat] {
+  color: var(--l-ink);
+}
+.patternRow {
+  display: grid;
+  gap: 4px;
+  align-items: stretch;
+  min-height: 30px;
+}
+.patternHand {
+  grid-column: 1;
+  align-self: center;
+  font: 600 11.5px/1 'Inter', sans-serif;
+  color: var(--l-muted);
+}
+.patternCell {
+  display: grid;
+  place-items: center;
+  min-height: 30px;
+  border-radius: 8px;
+  font: 700 12px/1 'Inter', sans-serif;
+  color: #fff;
+  background: linear-gradient(180deg, #e3876a, #c9684b);
+}
+.patternCell[data-hand='L'] {
+  background: linear-gradient(180deg, #4fb07c, #36905f);
+}
+.patternChords {
+  display: flex;
+  gap: 8px;
+}
+.patternChord {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--l-paper);
+  box-shadow: 0 0 0 1px var(--l-border);
+  font: 600 15px/1 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--l-ink);
+  transition: background 120ms, box-shadow 120ms;
+}
+.patternChord[data-active] {
+  background: #fff3ec;
+  box-shadow: 0 0 0 2px var(--l-accent);
+}
+
+/* ---- circle of fifths figure ---- */
+.circleFig {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.circleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.circleKey {
+  font: 600 22px/1.2 'Space Grotesk', 'Inter', sans-serif;
+  color: var(--l-ink);
+}
+.circleSig {
+  font: 500 14px/1.3 'Inter', sans-serif;
+  color: var(--l-muted);
+}
+.circleInfo .figure {
+  margin: 8px 0 0;
+  padding: 0;
+  box-shadow: none;
+  background: none;
+}
+.circleInfo .figureBar {
+  position: static;
+  margin-bottom: 4px;
+}
+.circleInfo .chordRow {
+  justify-content: flex-start;
+  padding-top: 0;
+}
+.circleInfo .chordCard {
+  width: 104px;
+}
